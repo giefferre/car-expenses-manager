@@ -1,0 +1,19 @@
+<div ng-controller="FleetListCtrl as vm">
+    <h1 class="mb-3">Fleet</h1>
+
+    <div class="container-fluid p-5">
+        <h2>Your cars:</h2>
+        <div class="list-group" ng-if="vm.fleet.length">
+            <a ng-repeat="car in vm.fleet" class="list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{car.plateNumber}}</h5>
+                </div>
+                <p class="mb-1">{{car.model}}</p>
+                <small>{{car.manufacturer}}</small>
+            </a>
+        </div>
+        <p ng-if="vm.fleet.length == 0" class="text-center">You have no cars set. Insert a new one.</p>
+    </div>
+
+    <a class="btn btn-primary btn-lg" href="#!fleet/new" role="button">Add new car</a>
+</div>

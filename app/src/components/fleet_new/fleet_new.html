@@ -1,0 +1,29 @@
+<div ng-controller="FleetNewCtrl as vm">
+        <h1 class="mb-3">Fleet</h1>
+
+        <div class="container-fluid p-5">
+            <h2>Add a new car:</h2>
+            <form name="addNewCarForm" ng-submit="vm.addNewCar()">
+                <div class="form-group">
+                    <label for="manufacturer">Manufacturer</label>
+                    <input type="text" class="form-control" id="manufacturer" aria-describedby="manufacturerHelp" placeholder="Enter car manufacturer name"
+                        required="required" ng-model="vm.newCar.manufacturer">
+                    <small id="manufacturerHelp" class="form-text text-muted">e.g. BMW, Audi, Fiat, etc.</small>
+                </div>
+                <div class="form-group">
+                    <label for="model">Model</label>
+                    <input type="text" class="form-control" id="model" aria-describedby="modelHelp" placeholder="Enter car model name" required="required"
+                        ng-model="vm.newCar.model">
+                    <small id="modelHelp" class="form-text text-muted">e.g. Z3, S7, Panda.</small>
+                </div>
+                <div class="form-group">
+                    <label for="plateNumber">Plate Number</label>
+                    <input type="text" class="form-control" id="model" aria-describedby="plateNumberHelp" placeholder="Enter car plate number"
+                        required="required" pattern="[A-Z]{2}[0-9]{3}[A-Z]{2}" ng-model="vm.newCar.plateNumber">
+                    <small id="plateNumberHelp" class="form-text text-muted">Only AA123ZZ format is supported.</small>
+                </div>
+                <button class="btn btn-secondary" ng-click="vm.backToFleet()">Cancel</button>
+                <button type="submit" class="btn btn-primary" ng-disabled="addNewCarForm.$invalid">Submit</button>
+            </form>
+        </div>
+    </div>
