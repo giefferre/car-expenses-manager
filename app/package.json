@@ -1,0 +1,33 @@
+{
+  "name": "car-expenses-manager-app",
+  "version": "1.0.0",
+  "description": "Car eXpenses Manager App",
+  "main": "index.html",
+  "scripts": {
+    "test": "karma start --single-run --browsers Firefox"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giefferre/car-expenses-manager.git"
+  },
+  "keywords": [
+    "car",
+    "expenses",
+    "manager"
+  ],
+  "author": "Gianfranco Reppucci <gianfranco.reppucci@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/giefferre/car-expenses-manager/issues"
+  },
+  "homepage": "https://github.com/giefferre/car-expenses-manager#readme",
+  "devDependencies": {
+    "angular": "^1.6.2",
+    "angular-mocks": "^1.6.2",
+    "jasmine": "^3.1.0",
+    "karma": "^2.0.0",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-jasmine": "^1.1.1"
+  }
+}
