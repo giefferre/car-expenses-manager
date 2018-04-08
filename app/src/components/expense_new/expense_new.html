@@ -1,0 +1,41 @@
+<div ng-controller="ExpenseNewCtrl as vm">
+    <h1 class="mb-3">Expenses</h1>
+
+    <div class="container-fluid p-5">
+        <h2>Add a new expense:</h2>
+
+        <form name="addNewExpenseForm" ng-submit="vm.addNewExpense()" ng-if="vm.fleet.length">
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" step="0.01" class="form-control" id="amount" aria-describedby="amountHelp" placeholder="Enter expense amount" required="required"
+                    ng-model="vm.newExpense.amount">
+                <small id="amountHelp" class="form-text text-muted">use dot for decimal values, e.g.
+                    <i>12.34</i>.</small>
+            </div>
+            <div class="form-group">
+                <label for="car">Car</label>
+                <select ng-model="vm.newExpense.car" class="form-control" id="car" required="required">
+                    <option ng-repeat="car in vm.fleet" value="{{car.id}}">{{car.manufacturer}} {{car.model}} - {{car.plateNumber}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="type">Type</label>
+                <select ng-model="vm.newExpense.type" class="form-control" id="type" required="required">
+                    <option value="1">Ordinary</option>
+                    <option value="2">Extraordinary</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="reason">Reason</label>
+                <input type="text" class="form-control" id="reason" aria-describedby="reasonHelp" placeholder="Enter reason for this expense"
+                    required="required" ng-model="vm.newExpense.reason">
+                <small id="reasonHelp" class="form-text text-muted">A text useful to explain the reason of the expense.</small>
+            </div>
+            <button class="btn btn-secondary" ng-click="vm.backToExpenses()">Cancel</button>
+            <button type="submit" class="btn btn-primary" ng-disabled="addNewExpenseForm.$invalid">Submit</button>
+        </form>
+
+        <p ng-if="vm.fleet.length == 0">Your fleet is empty. Please add
+            <a href="#!fleet/new">a new car</a> first.</p>
+    </div>
+</div>
