@@ -44,4 +44,29 @@ $app->post('/fleet', function (Request $request, Response $response, array $args
 
     return $response->withStatus(204);
 });
+
+$app->get('/expenses', function (Request $request, Response $response, array $args) {
+    $mapper = new ExpenseMapper($this->db);
+    $aYearAgo = date ("Y-m-d", time() - 60*60*24*365);
+    $now = date ("Y-m-d", time());
+    $expenses = $mapper->getExpenses($aYearAgo, $now);
+
+    $expensesReport = new ExpensesReport($expenses, $aYearAgo, $now);
+
+    return $response->withHeader('Content-type', 'application/json')->withJson($expensesReport);
+});
+
+$app->post('/expenses', function (Request $request, Response $response, array $args) {
+    try {
+        $expense = new Expense($request->getParsedBody());
+    } catch (Exception $e) {
+        return $response->withStatus(400)->write("bad request");
+    }
+
+    $mapper = new ExpenseMapper($this->db);
+    $mapper->save($expense);
+
+    return $response->withStatus(204);
+});
+
 $app->run();
