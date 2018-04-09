@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Represents an object which will make its user pay a lot of money
- * as it ages up.
+ * Class Car represents an object which will make its user
+ * pay a lot of money as it ages up.
  */
 class Car implements JsonSerializable
 {
@@ -21,6 +21,12 @@ class Car implements JsonSerializable
      */
     public function __construct(array $data)
     {
+        if (!isset($data['manufacturer'])
+            || !isset($data['model'])
+            || !isset($data['plateNumber'])) {
+            throw new Exception('invalid data given');
+        }
+
         if (isset($data['id'])) {
             $this->id = $data['id'];
         }
@@ -70,5 +76,21 @@ class Car implements JsonSerializable
     public function getPlateNumber()
     {
         return $this->plateNumber;
+    }
+
+    /**
+     * Returns car's creation date
+     */
+    public function getCreationDate()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Returns car's update date
+     */
+    public function getUpdatedDate()
+    {
+        return $this->updated;
     }
 }
