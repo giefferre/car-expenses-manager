@@ -25,4 +25,23 @@ $app->get('/', function (Request $request, Response $response, array $args) {
     return $response->write('CXM API 1.0');
 });
 
+$app->get('/fleet', function (Request $request, Response $response, array $args) {
+    $mapper = new CarMapper($this->db);
+    $cars = $mapper->getCars();
+
+    return $response->withHeader('Content-type', 'application/json')->withJson($cars);
+});
+
+$app->post('/fleet', function (Request $request, Response $response, array $args) {
+    try {
+        $car = new Car($request->getParsedBody());
+    } catch (Exception $e) {
+        return $response->withStatus(400)->write("bad request");
+    }
+
+    $mapper = new CarMapper($this->db);
+    $mapper->save($car);
+
+    return $response->withStatus(204);
+});
 $app->run();
