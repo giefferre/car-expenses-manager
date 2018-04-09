@@ -1,5 +1,5 @@
 <?php
-require '../../vendor/autoload.php';
+require '../vendor/autoload.php';
 require_once 'config.php';
 
 use \Psr\Http\Message\ResponseInterface as Response;
