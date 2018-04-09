@@ -1,0 +1,16 @@
+{
+    "name": "car-expenses-manager-api",
+    "description": "Car eXpenses Manager API",
+    "require": {
+        "slim/slim": "^3.0",
+        "robmorgan/phinx": "^0.5.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/classes/"
+        }
+    }
+}
