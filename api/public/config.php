@@ -1,7 +1,7 @@
 <?php
 
 $config['displayErrorDetails'] = true;
-$config['db']['host'] = "127.0.0.1";
+$config['db']['host'] = "mysql";
 $config['db']['user'] = "root";
-$config['db']['pass'] = "anotherbrickinthewall";
-$config['db']['dbname'] = "cxm_dev";
+$config['db']['pass'] = "notSoReallyDifficultPassword";
+$config['db']['dbname'] = "cxm";

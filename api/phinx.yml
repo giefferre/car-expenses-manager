@@ -7,7 +7,7 @@ environments:
     default_database: development
     production:
         adapter: mysql
-        host: mysql-server
+        host: mysql
         name: cxm
         user: root
         pass: 'notSoReallyDifficultPassword'
@@ -19,6 +19,6 @@ environments:
         host: 127.0.0.1
         name: cxm_dev
         user: root
-        pass: 'anotherbrickinthewall'
+        pass: 'notSoReallyDifficultPassword'
         port: 3306
         charset: utf8
