@@ -15,6 +15,20 @@ class CarMapper extends Mapper
         return $cars;
     }
 
+    public function getCarById(string $carId) {
+        $sql = "SELECT c.*
+            FROM cars c
+            WHERE c.id = :car_id";
+        $query = $this->db->prepare($sql);
+        $result = $query->execute(["car_id" => $carId]);
+
+        if (!$result) {
+            throw new Exception("record not found");
+        }
+
+        return new Car($query->fetch());
+    }
+
     public function save(Car $car)
     {
         $sql = "INSERT INTO cars

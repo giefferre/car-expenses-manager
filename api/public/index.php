@@ -72,14 +72,25 @@ $app->get('/expenses', function (Request $request, Response $response, array $ar
 });
 
 $app->post('/expenses', function (Request $request, Response $response, array $args) {
+    $requestBody = $request->getParsedBody();
+
     try {
-        $expense = new Expense($request->getParsedBody());
+        $carMapper = new CarMapper($this->db);
+        $car = $carMapper->getCarById($requestBody['carId']);
+        $expense = new Expense([
+            "carId" => $requestBody["carId"],
+            "carPlateNumber" => $car->getPlateNumber(),
+            "amount" => $requestBody["amount"],
+            "type" => $requestBody["type"],
+            "reason" => $requestBody["reason"],
+            "date" => $requestBody["date"],
+        ]);
     } catch (Exception $e) {
         return $response->withStatus(400)->write("bad request");
     }
 
-    $mapper = new ExpenseMapper($this->db);
-    $mapper->save($expense);
+    $expenseMapper = new ExpenseMapper($this->db);
+    $expenseMapper->save($expense);
 
     return $response->withStatus(204);
 });
