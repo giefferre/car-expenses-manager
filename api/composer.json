@@ -12,5 +12,12 @@
         "psr-4": {
             "": "src/classes/"
         }
+    },
+    "scripts": {
+        "phinx": "./vendor/bin/phinx migrate -e production",
+        "tests": [
+            "@composer install",
+            "./vendor/bin/phpunit"
+        ]
     }
 }
