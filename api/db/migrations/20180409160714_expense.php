@@ -34,7 +34,7 @@ class Expense extends AbstractMigration
             ->addColumn('amount', 'float', ['null' => false])
             ->addColumn('type', 'string', ['null' => true])
             ->addColumn('reason', 'text', ['null' => false])
-            ->addColumn('date', 'timestamp', ['null' => false, 'default' => 'CURRENT_TIMESTAMP'])
+            ->addColumn('date', 'date', ['null' => false])
             ->addColumn('created', 'timestamp', ['null' => false, 'default' => 'CURRENT_TIMESTAMP'])
             ->addColumn('updated', 'timestamp', ['null' => false, 'default' => 'CURRENT_TIMESTAMP'])
         ;
