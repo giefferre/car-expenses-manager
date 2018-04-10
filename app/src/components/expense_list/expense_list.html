@@ -17,8 +17,8 @@
         </thead>
         <tbody>
             <tr ng-repeat="expense in vm.expenseListResult.list">
-                <th scope="row">{{expense.date | date:"yyyy/MM/dd" }}</th>
-                <td>{{expense.carPlate}}</td>
+                <th scope="row">{{expense.date | date:"yyyy/MM/dd"}}</th>
+                <td>{{expense.carPlateNumber}}</td>
                 <td>{{expense.amount | currency:'€' }}</td>
                 <td>{{expense.type}}</td>
                 <td>{{expense.reason}}</td>
