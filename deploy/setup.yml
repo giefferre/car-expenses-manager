@@ -1,0 +1,27 @@
+version: '2'
+services:
+    mysql:
+        image: mysql:latest
+        container_name: mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=notSoReallyDifficultPassword
+
+    mysql_check:
+        image: dadarek/wait-for-dependencies
+        container_name: mysql_check
+        depends_on:
+            - mysql
+        command: mysql:3306
+
+    mysql_init:
+        image: mysql:latest
+        container_name: mysql_init
+        command: ["mysql","-h", "mysql", "-u","root","-pnotSoReallyDifficultPassword", "-e","create database cxm;"]
+
+    database_migration:
+        image: composer
+        container_name: database_migration
+        command: bash /migrate.sh
+        volumes:
+            - "$PWD/api:/app"
+            - "$PWD/deploy/migrate.sh/:/migrate.sh"

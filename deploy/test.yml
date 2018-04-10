@@ -1,0 +1,8 @@
+version: '2'
+services:
+    api_tests:
+        image: composer
+        container_name: api_tests
+        command: composer tests
+        volumes:
+            - "$PWD/api:/app"

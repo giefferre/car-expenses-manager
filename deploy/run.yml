@@ -1,0 +1,28 @@
+version: '2'
+services:
+    nginx:
+        restart: always
+        image: jwilder/nginx-proxy
+        container_name: nginx
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - "/etc/nginx/vhost.d"
+            - "/usr/share/nginx/html"
+            - "/var/run/docker.sock:/tmp/docker.sock:ro"
+
+    cxm_app:
+        build: ../app
+        environment:
+          - VIRTUAL_HOST=cxm.gieffer.re
+        depends_on:
+            - nginx
+            - cxm_api
+
+    cxm_api:
+        build: ../api
+        environment:
+            - VIRTUAL_HOST=cxm-api.gieffer.re
+        depends_on:
+            - nginx
