@@ -16,7 +16,7 @@
         return service;
 
         function getFleet() {
-            return $http({ method: 'GET', url: '/apimock/fleet.json' }).
+            return $http({ method: 'GET', url: 'http://cxm-api.gieffer.re/fleet' }).
                 then(function (data, status, headers, config) {
                     return data;
                 }, function (data, status, headers, config) {
@@ -28,7 +28,7 @@
         function addNewCar(car) {
             return $http({
                 method: 'POST',
-                url: '/apimock/fleet.json',
+                url: 'http://cxm-api.gieffer.re/fleet',
                 data: car,
             }).then(function (data, status, headers, config) {
                 return data;

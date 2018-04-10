@@ -16,7 +16,7 @@
         return service;
 
         function getExpenseList() {
-            return $http({ method: 'GET', url: '/apimock/expense_list.json' }).
+            return $http({ method: 'GET', url: 'http://cxm-api.gieffer.re/expenses' }).
                 then(function (data, status, headers, config) {
                     return data;
                 }, function (data, status, headers, config) {
@@ -28,7 +28,7 @@
         function addNewExpense(expense) {
             return $http({
                 method: 'POST',
-                url: '/apimock/expense_list.json',
+                url: 'http://cxm-api.gieffer.re/expenses',
                 data: expense,
             }).then(function (data, status, headers, config) {
                 return data;
