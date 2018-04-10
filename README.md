@@ -1,5 +1,7 @@
 # CXM - Car eXpenses Manager
 
+[![CircleCI](https://circleci.com/gh/giefferre/car-expenses-manager.svg?style=svg)](https://circleci.com/gh/giefferre/car-expenses-manager)
+
 A simple app to manage and track your car expenses 🚗 💵
 
 ## Introduction
