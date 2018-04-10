@@ -5,7 +5,7 @@ require_once 'config.php';
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 
-/* Application configuration & setup */
+// Application configuration & setup
 
 $app = new \Slim\App(['settings' => $config]);
 
@@ -19,7 +19,22 @@ $container['db'] = function ($c) {
     return $pdo;
 };
 
-/* Application Routes */
+// CORS implementation, simple version
+// https://www.slimframework.com/docs/v3/cookbook/enable-cors.html
+
+$app->options('/{routes:.+}', function ($request, $response, $args) {
+    return $response;
+});
+
+$app->add(function ($req, $res, $next) {
+    $response = $next($req, $res);
+    return $response
+        ->withHeader('Access-Control-Allow-Origin', '*')
+        ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+        ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+});
+
+// Application Routes
 
 $app->get('/', function (Request $request, Response $response, array $args) {
     return $response->write('CXM API 1.0');
@@ -47,8 +62,8 @@ $app->post('/fleet', function (Request $request, Response $response, array $args
 
 $app->get('/expenses', function (Request $request, Response $response, array $args) {
     $mapper = new ExpenseMapper($this->db);
-    $aYearAgo = date ("Y-m-d", time() - 60*60*24*365);
-    $now = date ("Y-m-d", time());
+    $aYearAgo = date("Y-m-d", time() - 60 * 60 * 24 * 365);
+    $now = date("Y-m-d", time());
     $expenses = $mapper->getExpenses($aYearAgo, $now);
 
     $expensesReport = new ExpensesReport($expenses, $aYearAgo, $now);
